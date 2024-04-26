@@ -74,9 +74,8 @@ class FormularioReportesDesign():
         cursor.execute(query_reporte2)
         data=cursor.fetchall()
         # Preparar los datos para la gráfica
-        print(data)
-        total_productos = [resultado[0] for resultado in data]
         productos = [resultado[1] for resultado in data]
+        total_productos = [resultado[2] for resultado in data]
 
 
         # Crear la gráfica

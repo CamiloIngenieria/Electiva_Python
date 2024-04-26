@@ -33,17 +33,20 @@ class FormularioCrearProductosDesign():
         self.labelCantidad.pack(fill=tk.X, padx=20,pady=15)
         self.cantidad = ttk.Entry(self.barra_inferior, font=('Times', 14))
         self.cantidad.pack(fill=tk.X, padx=20,pady=20)
+       
+        query_lista='''
+            SELECT name_categoria FROM categorias
+        '''
+        cursor.execute(query_lista)
+        datos=cursor.fetchall()
 
-        self.labelCategoria = tk.Label(self.barra_inferior, text="Categoria")
-        self.labelCategoria.config(fg="#222d33", font=("Roboto", 15), bg=COLOR_CUERPO_PRINCIPAL, anchor="w")
-        self.labelCategoria.pack(fill=tk.X, padx=20,pady=25)
-        self.categoria = ttk.Entry(self.barra_inferior, font=('Times', 14))
-        self.categoria.pack(fill=tk.X, padx=20,pady=30)
-
-
+        self.ListaCategorias = ttk.Combobox(self.barra_inferior, state="reandonly", values=datos)
+        self.ListaCategorias.pack(fill=tk.X, padx=20,pady=35)
+        
         self.registrar = tk.Button(self.barra_inferior,text="Agregar Producto",font=('Times', 15,BOLD),bg='#3a7ff6', bd=0,fg="#fff", command=self.registrar_producto)
-        self.registrar.pack(fill=tk.X, padx=20,pady=35) 
+        self.registrar.pack(fill=tk.X, padx=20,pady=40) 
 
     def registrar_producto(self):
-       cursor.execute(f"INSERT INTO productos (name_producto, cantidad,id_categoria) VALUES('{self.nombreproducto.get()}','{self.cantidad.get()}','{self.categoria.get()}')")        
+       cursor.execute(f"INSERT INTO productos (name_producto, cantidad,id_categoria) VALUES('{self.nombreproducto.get()}','{self.cantidad.get()}','{self.ListaCategorias.get()}')")        
        cnx.commit() # permite que los datos se guarden en la base de datos
+    

@@ -30,7 +30,8 @@ class FormularioListarCategoriasDesign():
 
         self.six = ttk.Treeview(self.barra_inferior,height = 10, columns = 1)
         self.six.pack(fill=tk.X, padx=20,pady=5) 
-        self.six.heading('#0', text = 'Nombre', anchor = CENTER)
+        self.six.heading('#0', text = 'Id', anchor = CENTER)
+        self.six.heading('#1', text = 'Nombre', anchor = CENTER)
 
         self.eliminar = tk.Button(self.barra_inferior,text="ELIMINAR",font=('Times', 15,BOLD),bg='#3a7ff6', bd=0,fg="#fff", command=self.Eliminar_Categoria)
         self.eliminar.pack(fill=tk.X, padx=20,pady=15) 
@@ -53,7 +54,7 @@ class FormularioListarCategoriasDesign():
         db_rows = self.run_query(query)
         # Rellenar datos
         for row in db_rows:
-            self.six.insert('', 0, text=row[1])
+            self.six.insert('', 0, text=row[0],values=row[1])
 
     def Eliminar_Categoria(self):
         try:

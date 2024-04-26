@@ -32,6 +32,7 @@ class FormularioListarProductosDesign():
         self.six.pack(fill=tk.X, padx=20,pady=5) 
         self.six.heading('#0', text = 'Nombre', anchor = CENTER)
         self.six.heading('#1', text = 'Cantidad', anchor = CENTER)
+        self.six.heading('#2', text = 'Categoria', anchor = CENTER)
 
         self.eliminar = tk.Button(self.barra_inferior,text="ELIMINAR",font=('Times', 15,BOLD),bg='#3a7ff6', bd=0,fg="#fff", command=self.Eliminar_Producto)
         self.eliminar.pack(fill=tk.X, padx=20,pady=15) 
